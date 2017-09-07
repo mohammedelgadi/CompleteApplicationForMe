@@ -1,2 +1,18 @@
+
+#maven ignore
+
+target
 */target/*
 */target/**
+
+
+# IntelliJ ignore
+.idea/
+*.iml
+
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+
