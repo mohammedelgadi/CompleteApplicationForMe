@@ -32,6 +32,10 @@ public class User {
 
     private String password;
 
+    private String tel;
+
+    private String adresse;
+
     private List<Task> tasks;
 
     public User(String password, String login, String username, List<Task> tasks) {
@@ -76,4 +80,6 @@ public class User {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
+
+
 }

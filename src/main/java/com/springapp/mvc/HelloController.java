@@ -19,4 +19,24 @@ public class HelloController {
         model.addAttribute("message", "Hello world!");
         return "website/index";
     }
+
+    @RequestMapping(value = "/ajax/morris", method = RequestMethod.GET)
+    public String getMorris(ModelMap model) {
+        model.addAttribute("message", "Hello world!");
+        return "website/content/morris";
+    }
+
+    @RequestMapping(value = "/ajax/calendar", method = RequestMethod.GET)
+    public String getCalendarPage(ModelMap model) {
+        model.addAttribute("message", "Hello world!");
+        return "website/content/calendar";
+    }
+
+    @RequestMapping(value = "/ajax/widget", method = RequestMethod.GET)
+    public String getWidgetPage(ModelMap model) {
+        model.addAttribute("message", "Hello world!");
+        return "website/content/widgets";
+    }
+
+
 }
