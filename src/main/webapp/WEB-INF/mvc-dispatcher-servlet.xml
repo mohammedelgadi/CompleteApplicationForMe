@@ -9,31 +9,32 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <context:component-scan base-package="com.springapp.mvc com.springapp.factory"/>
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mvc:resources mapping="/WEB-INF/pages/**" location="/pages/" />
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!--<mvc:resources mapping="/WEB-INF/pages/**" location="/pages/" />  -->
 
 
     <!-- Thymeleaf View Resolver - implementation of Spring's ViewResolver interface -->
     <bean id="viewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-        <property name="templateEngine" ref="templateEngine" />
-        <property name="characterEncoding" value="UTF-8" />
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
     <!-- Thymeleaf Template Engine (Spring4-specific version) -->
     <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolvers">
             <set>
-                <ref bean="templateResolver" />
+                <ref bean="templateResolver"/>
             </set>
         </property>
     </bean>
 
     <!-- Thymeleaf Template Resolver -->
     <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-        <property name="prefix" value="/WEB-INF/pages/" />
-        <property name="suffix" value=".html" />
-        <property name="templateMode" value="HTML" />
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".html"/>
+        <property name="templateMode" value="HTML"/>
+        <property name="cacheable" value="false"/>
     </bean>
 
 </beans>

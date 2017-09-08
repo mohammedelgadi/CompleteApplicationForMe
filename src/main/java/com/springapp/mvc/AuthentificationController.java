@@ -10,9 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/auth")
 public class AuthentificationController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginPage(ModelMap model) {
         model.addAttribute("message", "Hello world!");
         return "authentification/login";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String getRegistrationPage(ModelMap model) {
+        model.addAttribute("message", "Hello world!");
+        return "authentification/register";
     }
 }
