@@ -14,10 +14,12 @@
  * customer.s employees in accordance with the terms of the agreement signed
  * with VSC-technologies.
  */
-package com.springapp.mvc;
+package com.springapp.mvc.controller;
 
 import com.springapp.factory.UserFactory;
+import com.springapp.form.UserForm;
 import com.springapp.model.User;
+import com.springapp.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,14 +39,17 @@ public class UserController {
     @Autowired
     UserFactory userFactory;
 
-    @RequestMapping(value = "/user",method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @Autowired
+    UserService userService;
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     @ResponseBody
     public User getUser(ModelMap model) {
         return userFactory.getUser();
     }
 
 
-    @RequestMapping(value = "/users",method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     @ResponseBody
     public List<User> getUsers(ModelMap model) {
         return userFactory.getUsers();

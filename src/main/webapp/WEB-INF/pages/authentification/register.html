@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" id="extr-page">
-<head th:include="fragement/fragement_page :: head"/>
+<head th:include="fragement/fragement_page :: head"></head>
 
 <body id="login">
 
@@ -24,12 +24,13 @@
 
         <div class="row">
 
-            <div th:replace="authentification/auth_fragement :: presentation"/>
+            <div th:replace="authentification/auth_fragement :: presentation"></div>
 
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                 <div class="well no-padding">
 
-                    <form action="php/demo-register.php" id="smart-form-register" class="smart-form client-form">
+                    <form method="post" th:action="@{/auth/register}" th:object="${userForm}" id="smart-form-register"
+                          class="smart-form client-form">
                         <header>
                             Registration is FREE*
                         </header>
@@ -37,19 +38,20 @@
                         <fieldset>
                             <section>
                                 <label class="input"> <i class="icon-append fa fa-user"></i>
-                                    <input type="text" name="username" placeholder="Username">
+                                    <input name="username" th:field="*{username}" placeholder="Username">
                                     <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
                             </section>
 
                             <section>
                                 <label class="input"> <i class="icon-append fa fa-envelope"></i>
-                                    <input type="email" name="email" placeholder="Email address">
+                                    <input type="email" name="email" th:field="*{email}" placeholder="Email address">
                                     <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
                             </section>
 
                             <section>
                                 <label class="input"> <i class="icon-append fa fa-lock"></i>
-                                    <input type="password" name="password" placeholder="Password" id="password">
+                                    <input type="password" name="password" th:field="*{password}" placeholder="Password"
+                                           id="password">
                                     <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
                             </section>
 
@@ -64,12 +66,12 @@
                             <div class="row">
                                 <section class="col col-6">
                                     <label class="input">
-                                        <input type="text" name="firstname" placeholder="First name">
+                                        <input name="firstName" placeholder="First name">
                                     </label>
                                 </section>
                                 <section class="col col-6">
                                     <label class="input">
-                                        <input type="text" name="lastname" placeholder="Last name">
+                                        <input name="lastName" placeholder="Last name">
                                     </label>
                                 </section>
                             </div>
@@ -77,17 +79,16 @@
                             <div class="row">
                                 <section class="col col-6">
                                     <label class="select">
-                                        <select name="gender">
-                                            <option value="0" selected="" disabled="">Gender</option>
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
-                                            <option value="3">Prefer not to answer</option>
+                                        <select name="gender" th:field="*{gender}">
+                                            <option value="" selected="" disabled="">Gender</option>
+                                            <option value="MALE">Male</option>
+                                            <option value="FEMALE">Female</option>
+                                            <option value="NONE">Prefer not to answer</option>
                                         </select> <i></i> </label>
                                 </section>
                                 <section class="col col-6">
-                                    <label class="input"> <i class="icon-append fa fa-calendar"></i>
-                                        <input type="text" name="request" placeholder="Request activation on"
-                                               class="datepicker" data-dateformat='dd/mm/yy'>
+                                    <label class="input"> <i class="icon-append fa fa-phone"></i>
+                                        <input name="tel" placeholder="phone number" th:field="*{tel}">
                                     </label>
                                 </section>
                             </div>
@@ -103,7 +104,7 @@
                             </section>
                         </fieldset>
                         <footer>
-                            <button type="submit" class="btn btn-primary">
+                            <button class="btn btn-primary">
                                 Register
                             </button>
                         </footer>
@@ -138,11 +139,11 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <button type="button" class="close" data-dismiss="modal">
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>

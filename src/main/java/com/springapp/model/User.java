@@ -16,6 +16,8 @@
  */
 package com.springapp.model;
 
+import com.springapp.util.GenderEnum;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -32,24 +34,31 @@ public class User {
 
     private String username;
 
-    private String login;
+    private String firstName;
+
+    private String lastName;
 
     private String password;
 
-    private String tel;
+    private GenderEnum gender;
 
-    private String address;
+    private String email;
+
+    private String tel;
 
     @OneToMany(mappedBy = "user")
     private List<Event> events;
 
+    public User(){
+
+    }
+
     public User(String password, String login, String username, List<Event> tasks) {
         this.password = password;
-        this.login = login;
+        this.firstName = login;
         this.username = username;
         this.events = tasks;
     }
-
 
     public Integer getId() {
         return id;
@@ -67,12 +76,20 @@ public class User {
         this.username = username;
     }
 
-    public String getLogin() {
-        return login;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -83,6 +100,21 @@ public class User {
         this.password = password;
     }
 
+    public GenderEnum getGender() {
+        return gender;
+    }
+
+    public void setGender(GenderEnum gender) {
+        this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getTel() {
         return tel;
@@ -90,14 +122,6 @@ public class User {
 
     public void setTel(String tel) {
         this.tel = tel;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public List<Event> getEvents() {
