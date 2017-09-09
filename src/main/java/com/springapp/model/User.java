@@ -32,6 +32,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(unique = true)
     private String username;
 
     private String firstName;
@@ -42,6 +43,7 @@ public class User {
 
     private GenderEnum gender;
 
+    @Column(unique = true)
     private String email;
 
     private String tel;
@@ -49,7 +51,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Event> events;
 
-    public User(){
+    public User() {
 
     }
 
@@ -131,4 +133,5 @@ public class User {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
 }
