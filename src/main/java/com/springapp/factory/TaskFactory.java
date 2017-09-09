@@ -16,7 +16,7 @@
  */
 package com.springapp.factory;
 
-import com.springapp.model.Task;
+import com.springapp.model.Event;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -29,12 +29,12 @@ import java.util.List;
 @Component
 public class TaskFactory {
 
-    public Task getTask() {
-        return new Task();
+    public Event getTask() {
+        return new Event();
     }
 
-    public List<Task> getTasks() {
-        return Arrays.asList(new Task(), new Task(), new Task(), new Task());
+    public List<Event> getTasks() {
+        return Arrays.asList(new Event(), new Event(), new Event(), new Event());
 
     }
 }

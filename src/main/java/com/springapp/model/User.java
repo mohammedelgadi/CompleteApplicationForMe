@@ -34,15 +34,15 @@ public class User {
 
     private String tel;
 
-    private String adresse;
+    private String address;
 
-    private List<Task> tasks;
+    private List<Event> events;
 
-    public User(String password, String login, String username, List<Task> tasks) {
+    public User(String password, String login, String username, List<Event> tasks) {
         this.password = password;
         this.login = login;
         this.username = username;
-        this.tasks = tasks;
+        this.events = tasks;
     }
 
     public String getId() {
@@ -73,13 +73,32 @@ public class User {
         this.password = password;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public String getTel() {
+        return tel;
     }
 
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 }

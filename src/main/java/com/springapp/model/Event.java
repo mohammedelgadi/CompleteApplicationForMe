@@ -16,18 +16,24 @@
  */
 package com.springapp.model;
 
+import java.util.Date;
+
 /**
  * User: MELGADI
  * Date: 07/09/2017
  */
-public class Task {
+public class Event {
 
     private String id;
 
     private String title;
 
+    private Date start;
 
-    public Task() {
+    private Date end;
+
+
+    public Event() {
         this.id = String.valueOf(Math.random());
         this.title = "Etude et developpement";
 
@@ -49,4 +55,19 @@ public class Task {
         this.title = title;
     }
 
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
 }
