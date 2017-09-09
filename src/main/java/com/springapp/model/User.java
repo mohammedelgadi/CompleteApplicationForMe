@@ -16,15 +16,19 @@
  */
 package com.springapp.model;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * User: MELGADI
  * Date: 07/09/2017
  */
+@Entity
 public class User {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String username;
 
@@ -36,6 +40,7 @@ public class User {
 
     private String address;
 
+    @OneToMany(mappedBy = "user")
     private List<Event> events;
 
     public User(String password, String login, String username, List<Event> tasks) {
@@ -45,8 +50,13 @@ public class User {
         this.events = tasks;
     }
 
-    public String getId() {
+
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -73,10 +83,6 @@ public class User {
         this.password = password;
     }
 
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTel() {
         return tel;

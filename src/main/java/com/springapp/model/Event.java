@@ -16,15 +16,19 @@
  */
 package com.springapp.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * User: MELGADI
  * Date: 07/09/2017
  */
+@Entity
 public class Event {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String title;
 
@@ -32,18 +36,21 @@ public class Event {
 
     private Date end;
 
+    @ManyToOne
+    private User user;
+
 
     public Event() {
-        this.id = String.valueOf(Math.random());
         this.title = "Etude et developpement";
 
     }
 
-    public String getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -69,5 +76,13 @@ public class Event {
 
     public void setEnd(Date end) {
         this.end = end;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
