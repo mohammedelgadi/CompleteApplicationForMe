@@ -1,7 +1,6 @@
-
 var fullviewcalendar;
 
-function calendarPageFunction () {
+function calendarPageFunction() {
 
     // full calendar
 
@@ -169,7 +168,7 @@ function calendarPageFunction () {
             className: ["event", "bg-color-darken"]
         }],
 
-        eventClick: function(event) {
+        eventClick: function (event) {
             console.log(event.title);
         },
 
@@ -272,7 +271,7 @@ var pagedestroy = function () {
 }
 
 
-$(document).ready(function(){
+$(document).ready(function () {
 
     /* DO NOT REMOVE : GLOBAL FUNCTIONS!
      *
@@ -330,12 +329,56 @@ $(document).ready(function(){
     // pagefunction
 
 
-
     // end destroy
 
     // loadscript and run pagefunction
     loadScript("/resources/js/plugin/moment/moment.min.js", function () {
+
         loadScript("/resources/js/plugin/fullcalendar/jquery.fullcalendar.min.js", calendarPageFunction);
+    });
+
+    loadScript("resources/js/plugin/clockpicker/clockpicker.min.js", runClockPicker);
+
+
+    function runClockPicker() {
+        $('#startTime').clockpicker({
+            placement: 'bottom',
+            donetext: 'Done',
+            'default': 'now'
+        });
+
+        $('#endTime').clockpicker({
+            placement: 'bottom',
+            donetext: 'Done',
+            'default': 'now'
+        });
+    }
+
+    // Date Range Picker
+    $("#startDate").datepicker({
+        defaultDate: "+1w",
+        dateFormat: 'dd-mm-yy',
+        changeMonth: true,
+        minDate: 0,
+        numberOfMonths: 2,
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onClose: function (selectedDate) {
+            $("#endDate").datepicker("option", "minDate", selectedDate);
+        }
+
+    });
+    $("#endDate").datepicker({
+        defaultDate: "+1w",
+        dateFormat: 'dd-mm-yy',
+        changeMonth: true,
+        minDate: 0,
+        numberOfMonths: 2,
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        onClose: function (selectedDate) {
+            $("#startDate").datepicker("option", "maxDate", selectedDate);
+        }
     });
 
 
