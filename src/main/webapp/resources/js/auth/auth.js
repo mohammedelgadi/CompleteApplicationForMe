@@ -1,3 +1,6 @@
+
+var registerForm;
+
 function validateLoginForm() {
 
     $("#login-form").validate({
@@ -35,7 +38,7 @@ function validateLoginForm() {
 
 function validateRegisterForm() {
     // Validation
-    $("#smart-form-register").validate({
+    registerForm = $("#smart-form-register").validate({
 
         // Rules for form validation
         rules: {

@@ -8,6 +8,13 @@
                             http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd">
 
 
+    <context:component-scan base-package="com.springapp.mvc com.springapp.factory"/>
+
+    <!-- ecryter doit etre déclaré avant -->
+    <bean id="encrypter" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <bean id="businessAuthenticationService" class="com.springapp.mvc.provider.BusinessAuthenticationService"/>
+
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
             <value>file:///${externProperties}</value>
@@ -50,6 +57,7 @@
                 hibernate.cache.region.factory_class = org.hibernate.cache.ehcache.EhCacheRegionFactory
                 hibernate.cache.use_query_cache = true
                 hibernate.generate_statistics = true
+                hibernate.enable_lazy_load_no_trans = true
             </value>
         </property>
     </bean>

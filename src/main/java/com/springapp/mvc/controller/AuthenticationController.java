@@ -1,12 +1,12 @@
 package com.springapp.mvc.controller;
 
 
-import com.springapp.form.UserForm;
-import com.springapp.model.User;
+import com.springapp.form.model.UserForm;
 import com.springapp.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,7 +33,10 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String addUser(@Valid final UserForm userForm) {
+    public String addUser(@Valid final UserForm userForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "authentification/register";
+        }
         userService.addUser(userForm);
         return "redirect:" + "/register";
     }

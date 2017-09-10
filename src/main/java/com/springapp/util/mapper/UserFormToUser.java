@@ -1,6 +1,6 @@
 package com.springapp.util.mapper;
 
-import com.springapp.form.UserForm;
+import com.springapp.form.model.UserForm;
 import com.springapp.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,6 +12,6 @@ public interface UserFormToUser {
 
     UserFormToUser INSTANCE = Mappers.getMapper(UserFormToUser.class);
 
-    @Mapping(target = "password",expression = "java(new BCryptPasswordEncoder().encode(userForm.getPassword()))")
+    //@Mapping(target = "password",expression = "java(new BCryptPasswordEncoder().encode(userForm.getPassword()))")
     User userFormToUser(final UserForm userForm);
 }

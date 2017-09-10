@@ -42,10 +42,23 @@
                                     <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
                             </section>
 
-                            <section>
+                            <section th:if="${#fields.hasErrors('email')}">
+                                <label class="input state-error"> <i class="icon-append fa fa-envelope"></i>
+                                    <input id="email" type="email" class="invalid" name="email" th:field="*{email}"
+                                           placeholder="Email address">
+                                    <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                </label>
+
+                                <em class="invalid" for="email" th:if="${#fields.hasErrors('email')}"
+                                    th:errors="*{email}">Email not correct or exist in database</em>
+                            </section>
+
+                            <section th:unless="${#fields.hasErrors('email')}">
                                 <label class="input"> <i class="icon-append fa fa-envelope"></i>
-                                    <input type="email" name="email" th:field="*{email}" placeholder="Email address">
-                                    <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+                                    <input id="email" type="email" name="email" th:field="*{email}"
+                                           placeholder="Email address">
+                                    <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                </label>
                             </section>
 
                             <section>
@@ -66,12 +79,12 @@
                             <div class="row">
                                 <section class="col col-6">
                                     <label class="input">
-                                        <input name="firstName" placeholder="First name">
+                                        <input name="firstName" placeholder="First name" th:field="*{firstName}">
                                     </label>
                                 </section>
                                 <section class="col col-6">
                                     <label class="input">
-                                        <input name="lastName" placeholder="Last name">
+                                        <input name="lastName" placeholder="Last name" th:field="*{lastName}">
                                     </label>
                                 </section>
                             </div>

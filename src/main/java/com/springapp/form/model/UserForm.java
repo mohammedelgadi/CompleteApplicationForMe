@@ -1,6 +1,7 @@
-package com.springapp.form;
+package com.springapp.form.model;
 
 
+import com.springapp.form.validator.UniqueEmail;
 import com.springapp.util.GenderEnum;
 
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ public class UserForm {
     private String lastName;
 
     @NotNull
+    @UniqueEmail
     private String email;
 
     private GenderEnum gender;

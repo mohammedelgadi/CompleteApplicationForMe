@@ -17,7 +17,6 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.factory.UserFactory;
-import com.springapp.form.UserForm;
 import com.springapp.model.User;
 import com.springapp.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

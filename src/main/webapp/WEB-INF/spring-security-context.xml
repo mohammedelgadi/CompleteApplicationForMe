@@ -5,22 +5,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
+
+
     <security:http auto-config="true">
         <security:intercept-url pattern="/login" access="permitAll()"/>
         <security:intercept-url pattern="/*" access="hasRole('ROLE_USER')"/>
-        <security:form-login login-page="/auth/login" login-processing-url="/auth/login" default-target-url="/hello" always-use-default-target="true"/>
+        <security:form-login login-page="/auth/login" login-processing-url="/auth/login" default-target-url="/hello"
+                             always-use-default-target="true"/>
         <security:csrf disabled="true"/>
         <security:logout logout-url="/auth/logout" logout-success-url="/auth/login"/>
     </security:http>
 
     <security:authentication-manager>
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user name="bill" password="abc123" authorities="ROLE_USER"/>
-                <security:user name="admin" password="root123" authorities="ROLE_ADMIN"/>
-                <security:user name="dba" password="root123" authorities="ROLE_ADMIN,ROLE_DBA"/>
-            </security:user-service>
-        </security:authentication-provider>
+        <security:authentication-provider ref="businessAuthenticationService"/>
     </security:authentication-manager>
 
 </beans>
