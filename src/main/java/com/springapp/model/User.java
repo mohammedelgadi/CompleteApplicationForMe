@@ -54,7 +54,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Event> events;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany
     private List<Role> roles;
 
     private boolean accountNonExpired = true;
