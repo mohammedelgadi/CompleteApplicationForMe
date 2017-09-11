@@ -51,7 +51,7 @@ public class User implements UserDetails {
 
     private String tel;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Event> events;
 
     @ManyToMany
