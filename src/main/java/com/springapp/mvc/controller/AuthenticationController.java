@@ -1,8 +1,8 @@
 package com.springapp.mvc.controller;
 
 
-import com.springapp.form.model.UserForm;
 import com.springapp.mvc.service.UserService;
+import com.springapp.stream.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/auth")
@@ -21,23 +22,29 @@ public class AuthenticationController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginPage(ModelMap model) {
-        model.addAttribute("message", "Hello world!");
-        return "authentification/login";
+    public String getLoginPage(Principal principal) {
+        if (principal != null) {
+            return "redirect:" + "/hello";
+        }
+        return "authentication/login";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String getRegistrationPage(ModelMap model) {
+    public String getRegistrationPage(Principal principal, ModelMap model) {
+        if (principal != null) {
+            return "redirect:" + "/hello";
+        }
         model.addAttribute("userForm", new UserForm());
-        return "authentification/register";
+        return "authentication/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String addUser(@Valid final UserForm userForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "authentification/register";
+            return "authentication/register";
         }
         userService.addUser(userForm);
         return "redirect:" + "/register";
     }
+
 }

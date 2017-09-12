@@ -1,7 +1,7 @@
-package com.springapp.form.model;
+package com.springapp.stream.form;
 
 
-import com.springapp.form.validator.UniqueEmail;
+import com.springapp.stream.validator.UniqueEmail;
 import com.springapp.util.GenderEnum;
 
 import javax.validation.constraints.NotNull;

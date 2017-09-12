@@ -16,6 +16,7 @@
  */
 package com.springapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springapp.util.GenderEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,6 +43,7 @@ public class User implements UserDetails {
 
     private String lastName;
 
+    @JsonIgnore
     private String password;
 
     private GenderEnum gender;
@@ -51,10 +53,10 @@ public class User implements UserDetails {
 
     private String tel;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<Event> events;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
     private boolean accountNonExpired = true;

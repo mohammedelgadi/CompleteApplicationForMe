@@ -1,6 +1,6 @@
-package com.springapp.form.validator;
+package com.springapp.stream.validator;
 
-import com.springapp.form.validator.impl.UniqueEmailValidator;
+import com.springapp.stream.validator.impl.UniqueEmailValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

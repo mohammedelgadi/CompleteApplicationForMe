@@ -1,6 +1,6 @@
-package com.springapp.form.validator.impl;
+package com.springapp.stream.validator.impl;
 
-import com.springapp.form.validator.UniqueEmail;
+import com.springapp.stream.validator.UniqueEmail;
 import com.springapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 

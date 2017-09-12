@@ -1,7 +1,7 @@
 package com.springapp.mvc.service.impl;
 
 
-import com.springapp.form.model.UserForm;
+import com.springapp.stream.form.UserForm;
 import com.springapp.model.User;
 import com.springapp.mvc.service.UserService;
 import com.springapp.repository.RoleRepository;

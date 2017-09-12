@@ -134,7 +134,7 @@ function calendarPageFunction() {
             id: 999,
             title: 'Repeating Event',
             start: new Date(y, m, d - 3, 16, 0),
-            allDay: false,
+            allDay: true,
             className: ["event", "bg-color-blue"],
             icon: 'fa-clock-o'
         }, {

@@ -36,12 +36,17 @@ public class Event {
 
     private Date end;
 
-    @ManyToOne
+    private String icon;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
 
     public Event() {
         this.title = "Etude et developpement";
+        this.start = new Date();
+        this.end = new Date();
+        this.icon = "icon";
 
     }
 
@@ -84,5 +89,13 @@ public class Event {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

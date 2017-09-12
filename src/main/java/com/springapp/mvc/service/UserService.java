@@ -1,9 +1,8 @@
 package com.springapp.mvc.service;
 
 
-import com.springapp.form.model.UserForm;
+import com.springapp.stream.form.UserForm;
 import com.springapp.model.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service

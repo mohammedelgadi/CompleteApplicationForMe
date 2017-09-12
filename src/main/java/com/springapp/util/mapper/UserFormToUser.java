@@ -1,9 +1,8 @@
 package com.springapp.util.mapper;
 
-import com.springapp.form.model.UserForm;
+import com.springapp.stream.form.UserForm;
 import com.springapp.model.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
