@@ -17,3 +17,9 @@
  * - BODY
  * - CUSTOM STYLES
  */
+
+.dateInModal{z-index:1151 !important;}
+
+.popover.clockpicker-popover{
+    z-index: 1050;
+}
