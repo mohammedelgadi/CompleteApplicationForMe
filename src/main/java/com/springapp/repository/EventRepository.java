@@ -17,8 +17,10 @@
 package com.springapp.repository;
 
 import com.springapp.model.Event;
+import com.springapp.model.User;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,4 +30,8 @@ import java.util.List;
 public interface EventRepository extends CrudRepository<Event, Integer> {
 
     List<Event> findAll();
+
+    List<Event> findAllByUser(User user);
+
+    List<Event> findAllByUserAndStartAfterAndEndBefore(User user,Date start, Date end);
 }

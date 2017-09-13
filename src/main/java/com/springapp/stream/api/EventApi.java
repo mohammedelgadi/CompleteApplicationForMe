@@ -32,9 +32,9 @@ public class EventApi {
 
     private String title;
 
-    private Date start;
+    private String start;
 
-    private Date end;
+    private String end;
 
     private String startDate;
 
@@ -45,6 +45,8 @@ public class EventApi {
     private String endTime;
 
     private String icon;
+
+    private String description;
 
     private User user;
 
@@ -64,36 +66,20 @@ public class EventApi {
         this.title = title;
     }
 
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getStartDate() {
@@ -126,5 +112,29 @@ public class EventApi {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

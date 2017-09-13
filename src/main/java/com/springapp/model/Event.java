@@ -38,6 +38,10 @@ public class Event {
 
     private String icon;
 
+    private String className;
+
+    private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
@@ -97,5 +101,21 @@ public class Event {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

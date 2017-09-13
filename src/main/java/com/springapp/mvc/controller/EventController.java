@@ -18,11 +18,11 @@ package com.springapp.mvc.controller;
 
 import com.springapp.model.Event;
 import com.springapp.model.User;
-import com.springapp.repository.EventRepository;
-import com.springapp.repository.UserRepository;
-import com.springapp.stream.api.EventApi;
+import com.springapp.mvc.service.EventService;
+import com.springapp.mvc.service.UserService;
+import com.springapp.mvc.service.impl.AuthenticationServiceImpl;
+import com.springapp.stream.api.CalendarInputs;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,27 +37,25 @@ import java.util.List;
 public class EventController {
 
     @Autowired
-    EventRepository eventRepository;
+    EventService eventService;
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
+
+    @Autowired
+    AuthenticationServiceImpl authenticationService;
 
 
-    @RequestMapping("/event")
-    public List<Event> getListEvent() {
-        User user = userRepository.findByEmail("mohelgadi@gmail.com");
-
-        if (user != null) {
-            Event event = new Event();
-            event.setUser(user);
-            eventRepository.save(event);
-        }
-        return eventRepository.findAll();
+    @RequestMapping(value = "/event/add", method = RequestMethod.POST, headers = "Accept=application/json")
+    public Event addEvent(Event event) {
+        event.setUser((User) authenticationService.getAuthentication().getPrincipal());
+        return eventService.addEvent(event);
     }
 
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
+    public List<Event> getConnectedUserEvents(CalendarInputs calendarInputs) {
 
-    @RequestMapping(value = "/event/add", method = RequestMethod.PUT)
-    public EventApi addEvent(EventApi event) {
-       return event;
+        User user = (User) authenticationService.getAuthentication().getPrincipal();
+        return eventService.getUserCalendarEvents(user, calendarInputs);
     }
 }
