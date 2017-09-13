@@ -20,8 +20,11 @@ import com.springapp.model.Event;
 import com.springapp.model.User;
 import com.springapp.repository.EventRepository;
 import com.springapp.repository.UserRepository;
+import com.springapp.stream.api.EventApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -50,5 +53,11 @@ public class EventController {
             eventRepository.save(event);
         }
         return eventRepository.findAll();
+    }
+
+
+    @RequestMapping(value = "/event/add", method = RequestMethod.PUT)
+    public EventApi addEvent(EventApi event) {
+       return event;
     }
 }
