@@ -1,7 +1,7 @@
 var fullviewcalendar;
 
 var startDateModal = $("#startDateModal");
-var endDateModal =  $("#endDateModal");
+var endDateModal = $("#endDateModal");
 
 
 function toDate(dateStr, timeStr) {
@@ -161,17 +161,17 @@ function calendarPageFunction() {
             calendar.fullCalendar('unselect');
         },
 
-        events: function(start, end, timezone, callback) {
+        events: function (start, end, timezone, callback) {
             $.ajax({
                 url: '/events',
                 dataType: 'json',
-                type : "GET",
+                type: "GET",
                 data: {
                     // our hypothetical feed requires UNIX timestamps
                     start: new Date(start),
                     end: new Date(end)
                 },
-                success: function(doc) {
+                success: function (doc) {
                     callback(doc);
                 }
             });
@@ -186,10 +186,14 @@ function calendarPageFunction() {
                 element.find('.fc-event-title').append("<br/><span class='ultra-light'>" + event.description +
                     "</span>");
             }
+            /*
             if (!event.icon == "") {
                 element.find('.fc-event-title').append("<i class='air air-top-right fa " + event.icon +
                     " '></i>");
-            }
+            }*/
+
+            element.find('.fc-event-title').append("<i><img src='/resources/img/avatars/sunny.png' class='air air-top-right' alt='John Doe' class='online' width='30px'></i>")
+
 
             element.bind('dblclick', function () {
                 showEventDetail(event);
@@ -214,7 +218,7 @@ function calendarPageFunction() {
         $("#startDateModal").datepicker('setDate', moment(start).format('DD-MM-YYYY'));
         $("#endDateModal").datepicker('setDate', moment(end).format('DD-MM-YYYY'));
 
-        updateDatePickerRelated(startDateModal,endDateModal,start,end);
+        updateDatePickerRelated(startDateModal, endDateModal, start, end);
 
         $eventModal.modal('show');
     }
