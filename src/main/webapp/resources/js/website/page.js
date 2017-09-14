@@ -1,8 +1,5 @@
 var fullviewcalendar;
 
-var startDateModal = $("#startDateModal");
-var endDateModal = $("#endDateModal");
-
 
 function toDate(dateStr, timeStr) {
     var arrayDate = dateStr.split("-");
@@ -21,13 +18,13 @@ function updateDatePickerRelated(startSelector, endSelector, start, end) {
 
     var endDate = moment(end).format('DD-MM-YYYY');
 
-    $(startSelector).datepicker('setDate', startDate);
+    startSelector.datepicker('setDate', startDate);
 
-    $(startSelector).datepicker('setMaxDate', endDate);
+    startSelector.datepicker('option', 'maxDate', endDate);
 
-    $(endSelector).datepicker('setDate', endDate);
+    endSelector.datepicker('setDate', endDate);
 
-    $(endSelector).datepicker('setMinDate', startDate);
+    endSelector.datepicker('option', 'minDate', startDate);
 
 }
 
@@ -75,14 +72,7 @@ function calendarPageFunction() {
         initDrag(html, eventObject);
     };
 
-    /* initialize the external events
-     -----------------------------------------------------------------*/
-
-    $('#external-events > li').each(function () {
-        initDrag($(this));
-    });
-
-    $('#add-event').click(function () {
+    var addEventAfterValidation = function () {
         var title = $('#title').val(),
             priority = $('input:radio[name=priority]:checked').val(),
             description = $('#description').val(),
@@ -107,7 +97,23 @@ function calendarPageFunction() {
         };
 
         addEvent(eventObject);
+    }
+
+    /* initialize the external events
+     -----------------------------------------------------------------*/
+
+    $('#external-events > li').each(function () {
+        initDrag($(this));
     });
+
+
+    addEventButton.click(function () {
+        var valid = addEventForm.valid();
+        if (addEventForm.valid()) {
+            addEventAfterValidation();
+        }
+    });
+
 
     /* initialize the calendar
      -----------------------------------------------------------------*/
@@ -192,7 +198,7 @@ function calendarPageFunction() {
                     " '></i>");
             }*/
 
-            element.find('.fc-event-title').append("<i><img src='/resources/img/avatars/sunny.png' class='air air-top-right' alt='John Doe' class='online' width='30px'></i>")
+            element.find('.fc-event-title').append("<i><img src='/resources/img/avatars/sunny.png' class='air air-top-right img-circle margined-img' alt='John Doe' class='online' width='30px'></i>")
 
 
             element.bind('dblclick', function () {
@@ -213,10 +219,8 @@ function calendarPageFunction() {
 
         // put values in the modal form
         $("#titleModal").val(event.title);
-        $("#descriptionModal").text(event.description);
 
-        $("#startDateModal").datepicker('setDate', moment(start).format('DD-MM-YYYY'));
-        $("#endDateModal").datepicker('setDate', moment(end).format('DD-MM-YYYY'));
+        $("#descriptionModal").text(event.description);
 
         updateDatePickerRelated(startDateModal, endDateModal, start, end);
 
@@ -263,6 +267,9 @@ function calendarPageFunction() {
             data: event,
             success: function (response) {
                 $('#calendar').fullCalendar('renderEvent', response, true);
+                addEventForm.each(function(){
+                    this.reset();
+                });
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 if (textStatus === "timeout") {
@@ -274,3 +281,47 @@ function calendarPageFunction() {
         });
     }
 };
+
+function initEventForm() {
+    registerForm = $("#add-event-form").validate({
+
+        // Rules for form validation
+        rules: {
+            title: {
+                required: true
+            },
+            startDate: {
+                required: true
+            },
+            endDate: {
+                required: true
+            },
+            startTime: {
+                required: true
+            },
+            endTime: {
+                required: true
+            }
+        },
+
+        // Messages for form validation
+        messages: {
+            title: {
+                required: 'Titre est obligatoire'
+            },
+            startDate: {
+                required: 'Date est obligatoire'
+            },
+            endDate: {
+                required: 'Date est obligatoire'
+            },
+            startTime: {
+                required: 'Heure est obligatoire'
+            },
+            endTime: {
+                required: 'Heure est obligatoire'
+            }
+        }
+    });
+}
+

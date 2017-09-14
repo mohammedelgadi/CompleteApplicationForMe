@@ -23,3 +23,17 @@
 .popover.clockpicker-popover{
     z-index: 1050;
 }
+
+.calendarForm .state-error input {
+    background: rgba(255, 8, 8, .2)!important;
+    border-color: #a90329!important;
+}
+
+.calendarForm em {
+    display: block;
+    color: #D56161;
+}
+
+.margined-img{
+    margin: 3px;
+}

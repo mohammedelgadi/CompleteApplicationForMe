@@ -7,6 +7,16 @@
 // pagedestroy is called automatically before loading a new page
 // only usable in AJAX version!
 
+addEventButton = $('#add-event');
+addEventForm = $('#add-event-form');
+
+startDateModal = $('#startDateModal');
+endDateModal = $('#endDateModal');
+
+startDate = $('#startDate');
+endDate = $('#endDate');
+
+
 var pagedestroy = function () {
 
     /*
@@ -145,7 +155,7 @@ $(document).ready(function () {
     }
 
     // Date Range Picker
-    $("#startDate").datepicker({
+    startDate.datepicker({
         defaultDate: "+1w",
         dateFormat: 'dd-mm-yy',
         changeMonth: true,
@@ -154,11 +164,11 @@ $(document).ready(function () {
         prevText: '<i class="fa fa-chevron-left"></i>',
         nextText: '<i class="fa fa-chevron-right"></i>',
         onClose: function (selectedDate) {
-            $("#endDate").datepicker("option", "minDate", selectedDate);
+            endDate.datepicker("option", "minDate", selectedDate);
         }
 
     });
-    $("#endDate").datepicker({
+    endDate.datepicker({
         defaultDate: "+1w",
         dateFormat: 'dd-mm-yy',
         changeMonth: true,
@@ -167,11 +177,12 @@ $(document).ready(function () {
         prevText: '<i class="fa fa-chevron-left"></i>',
         nextText: '<i class="fa fa-chevron-right"></i>',
         onClose: function (selectedDate) {
-            $("#startDate").datepicker("option", "maxDate", selectedDate);
+            startDate.datepicker("option", "maxDate", selectedDate);
         }
     });
 
-    $("#startDateModal").datepicker({
+
+    startDateModal.datepicker({
         defaultDate: "+1w",
         dateFormat: 'dd-mm-yy',
         changeMonth: true,
@@ -180,11 +191,11 @@ $(document).ready(function () {
         prevText: '<i class="fa fa-chevron-left"></i>',
         nextText: '<i class="fa fa-chevron-right"></i>',
         onClose: function (selectedDate) {
-            $("#endDateModal").datepicker("option", "minDate", selectedDate);
+            endDateModal.datepicker("option", "minDate", selectedDate);
         }
 
     });
-    $("#endDateModal").datepicker({
+    endDateModal.datepicker({
         defaultDate: "+1w",
         dateFormat: 'dd-mm-yy',
         changeMonth: true,
@@ -193,9 +204,11 @@ $(document).ready(function () {
         prevText: '<i class="fa fa-chevron-left"></i>',
         nextText: '<i class="fa fa-chevron-right"></i>',
         onClose: function (selectedDate) {
-            $("#startDateModal").datepicker("option", "maxDate", selectedDate);
+            startDateModal.datepicker("option", "maxDate", selectedDate);
         }
     });
+
+    initEventForm();
 
 
 });
